@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
     width: Platform.OS === "ios" ? 300 : 200,
     alignSelf: "center",
-    backgroundColor: "#d6d3d1",
+    backgroundColor: "#ffffff",
   },
   button_text: {
     fontSize: Platform.OS === "ios" ? 24 : 16,
     fontFamily: "Inter_600SemiBold",
-    color: "#0c0a09",
+    color: "#0a0a0a",
   },
 });
 

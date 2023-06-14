@@ -3,10 +3,12 @@ import * as WebBrowser from "expo-web-browser";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
 import Button from "./button";
+import { useRouter } from "expo-router";
 
 WebBrowser.maybeCompleteAuthSession();
 
 const SignInWithOAuth = () => {
+  const router = useRouter();
   useWarmUpBrowser();
   const { startOAuthFlow } = useOAuth({
     strategy: "oauth_google",
@@ -28,7 +30,7 @@ const SignInWithOAuth = () => {
     } catch (err) {
       console.error("OAuth error", err);
     }
-  }, [startOAuthFlow]);
+  }, [startOAuthFlow, router]);
 
   return <Button onPress={() => onPress()}>Sign In</Button>;
 };

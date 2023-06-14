@@ -3,20 +3,22 @@ import { StyleSheet, Text, View, Platform } from "react-native";
 import { Link } from "expo-router";
 import LottieView from "lottie-react-native";
 import { Audio } from "expo-av";
+import { useUser } from "@clerk/clerk-expo";
 import Container from "../../components/container";
 import Header from "../../components/header";
 import Title from "../../components/title";
 import Avatar from "../../components/avatar";
 import Button from "../../components/button";
-import { useUser } from "@clerk/clerk-expo";
 
 export default function Page() {
   const [sound, setSound] = useState(null);
   const [time, setTime] = useState("13:00");
   const [active, setActive] = useState(false);
-  const { user } = useUser();
+
   const interval = useRef(null);
   const animation = useRef(null);
+
+  const { user } = useUser();
 
   const playAudio = async () => {
     try {
@@ -86,7 +88,12 @@ export default function Page() {
       <Header>
         <Title>Meditate</Title>
         <Link href="/profile">
-          <Avatar name="Omkar Patil" size={40} backgroundColor="lightblue" />
+          <Avatar
+            url={user.imageUrl}
+            name={user.fullName}
+            size={40}
+            backgroundColor="lightblue"
+          />
         </Link>
       </Header>
       <View
@@ -113,7 +120,7 @@ export default function Page() {
         <Button
           onPress={active ? stopTimer : startTimer}
           buttonStyle={{
-            backgroundColor: !active ? "#d6d3d1" : "#27272a",
+            backgroundColor: !active ? "white" : "#27272a",
           }}
           textStyle={{
             color: active ? "white" : "#0c0a09",
@@ -140,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: Platform.OS === "ios" ? 64 : 40,
+    fontSize: Platform.OS === "ios" ? 96 : 84,
     alignSelf: "center",
     fontVariant: ["tabular-nums"],
     fontFamily: "Inter_600SemiBold",

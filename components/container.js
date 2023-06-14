@@ -15,7 +15,8 @@ const Container = ({ children, style, statusColor }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40,
+    paddingVertical: 40,
+    paddingHorizontal: 20,
     backgroundColor: "#0a0a0a",
     flexDirection: "column",
     justifyContent: "space-between",
